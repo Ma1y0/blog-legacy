@@ -8,22 +8,26 @@ datasource db {
 }
 
 model Post {
-  id  String @default(cuid()) @id
-  title String 
-  content String?
-  createdAt DateTime  @default(now()) @map(name: "created_at")
-  updatedAt DateTime  @updatedAt @map(name: "updated_at")
-  published Boolean @default(false)
-  author User? @relation(fields: [authorId], references: [id])
-  authorId String?
+  id        String   @id @default(cuid())
+  title     String
+  content   String?
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+  published Boolean  @default(false)
+  author    User?    @relation(fields: [authorId], references: [id])
+  authorId  String?
+}
+
+model Account {
 }
 
 model User {
-  id String @default(cuid()) @id
-  name String?
-  email String @unique
-  createdAt DateTime  @default(now()) @map(name: "created_at")
-  updatedAt DateTime  @updatedAt @map(name: "updated_at")
-  posts Post[]
+  id        String   @id @default(cuid())
+  name      String?
+  email     String   @unique
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+  posts     Post[]
+
   @@map(name: "users")
 }
