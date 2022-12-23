@@ -30,18 +30,13 @@ function Index(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const [feed, setFeed] = useState(props.feed);
 
   return (
-    <div>
-      <header className="mb-5 mt-5">
-        <NavBar />
-      </header>
-      <main className="flex flex-col">
-        {props.feed.map((post) => (
-          <div key={post.id}>
-            <Post post={post} />
-          </div>
-        ))}
-      </main>
-    </div>
+        <main className="flex flex-col">
+          {props.feed.map((post) => (
+            <div key={post.id}>
+              <Post post={post} />
+            </div>
+          ))}
+        </main>
   );
 }
 
